@@ -69,7 +69,7 @@ jobs:
         cd ~/workspace/OrangeFox_sync/sync/
         ./orangefox_sync.sh --branch 10.0 --path ~/workspace/OrangeFox
         cd ~/workspace/OrangeFox
-        git clone ${{ github.event.inputs.dt_remote }}${{ github.event.inputs.dt_url }} -b ${{ github.event.inputs.dt_path }}
+        git clone ${{ github.event.inputs.dt_remote }}${{ github.event.inputs.dt_url }}.git -b ${{ github.event.inputs.dt_path }}
       id: pwd
 
     - name: Start Building
