@@ -66,7 +66,9 @@ jobs:
         git config --global user.name "${{ steps.var.outputs.git_username }}"
         git config --global user.email "${{ steps.var.outputs.git_email }}"
         git clone https://gitlab.com/OrangeFox/sync.git
-        cd ~/workspace/OrangeFox_sync/sync/
+        echo 1
+        cd ~/workspace/sync
+        echo 2
         ./orangefox_sync.sh --branch 10.0 --path ~/workspace/OrangeFox
         cd ~/workspace/OrangeFox
         git clone ${{ github.event.inputs.dt_remote }}${{ github.event.inputs.dt_url }}.git -b ${{ github.event.inputs.dt_path }}
