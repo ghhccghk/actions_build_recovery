@@ -6,7 +6,7 @@
   "use_own_dt": true,
   "dt_url": "color597/twrp_device_oppo_PBCM10",
   "dt_branch": "android-11",
-  "dt_remote": "github",
+  "dt_remote": "github.com",
   "dt_path": "device/oppo/PBCM10",
   "device_code": "PBCM10",
   "fix_product": false,

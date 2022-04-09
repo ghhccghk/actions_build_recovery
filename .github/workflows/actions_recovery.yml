@@ -31,6 +31,8 @@ jobs:
       run: |
         cd ~
         sudo apt -y install git aria2
+        mkdir workspace
+        cd workspace
         git clone https://gitlab.com/OrangeFox/misc/scripts
         cd scripts
         sudo bash setup/android_build_env.sh
@@ -54,64 +56,26 @@ jobs:
         echo "::set-output name=fix_branch::$(jq -r '.fix_branch' config.json)"
         echo "::set-output name=date::$(date +%F)"
       id: var
-      
-    - name: Install Repo
-      run: |
-        mkdir ~/bin
-        curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
-        chmod a+x ~/bin/repo
-        
-    - name: Initialize Repair Manifest
-      run: git clone https://github.com/TeamWin/buildtree_manifests.git repair/
-      
+
     - name: Initialize a Repo client
       run: |
         PATH=~/bin:$PATH
         mkdir workspace
-        cd workspace
+        cd ~/workspace
         echo "::set-output name=pwd::$(pwd)"
         git config --global user.name "${{ steps.var.outputs.git_username }}"
         git config --global user.email "${{ steps.var.outputs.git_email }}"
         git clone https://gitlab.com/OrangeFox/sync.git
         cd ~/workspace/OrangeFox_sync/sync/
-        bash orangefox_sync.sh --branch 10.0 --path ~/workspace
+        ./orangefox_sync.sh --branch 10.0 --path ~/workspace/OrangeFox
+        cd ~/workspace/OrangeFox
+        git clone ${{ github.event.inputs.dt_remote }}${{ github.event.inputs.dt_url }} -b ${{ github.event.inputs.dt_path }}
       id: pwd
-      
-    - name: Fix the bug of missing common
-      if: steps.var.outputs.fix_misscom == 'true'
-      run: cp repair/omni-9.0/qcom.xml workspace/.repo/local_manifests/
-      
-    - name: Fix busybox bug
-      if: steps.var.outputs.fix_busybox == 'true'
-      run: cp repair/omni-9.0/busybox.xml workspace/.repo/local_manifests/
-      
-    - name: Clone your own device tree
-      if: steps.var.outputs.use_own_dt == 'true'
-      run: |
-        sed -i 's!dt_url!${{ steps.var.outputs.dt_url }}!g' device.xml
-        sed -i 's!dt_path!${{ steps.var.outputs.dt_path }}!g' device.xml
-        sed -i 's!dt_remote!${{ steps.var.outputs.dt_remote }}!g' device.xml
-        sed -i 's!dt_branch!${{ steps.var.outputs.dt_branch }}!g' device.xml
-        cp device.xml workspace/.repo/local_manifests/ 
-          
-    - name: Repo sync
-      run: |
-        PATH=~/bin:$PATH
-        cd workspace
-        ls -al
-        
-    - name: Fix cannot locate product
-      if: steps.var.outputs.fix_product == 'true'
-      run: |
-        cd ${{ steps.pwd.outputs.pwd }}/build/core
-        rm -rf product_config.mk
-        sed -i 's!device_code!${{ steps.var.outputs.device_code }}!g' ${{ steps.pwd.outputs.pwd }}/../build/core/${{ steps.var.outputs.fix_branch }}/product_config.mk
-        cp ${{ steps.pwd.outputs.pwd }}/../build/core/${{ steps.var.outputs.fix_branch }}/product_config.mk ${{ steps.pwd.outputs.pwd }}/build/core/product_config.mk
-        
+
     - name: Start Building
       run: |
         PATH=~/bin:$PATH
-        cd ${{ steps.pwd.outputs.pwd }}
+        cd ~/workspace/OrangeFox
         ls
         tree device
         export ALLOW_MISSING_DEPENDENCIES=true
