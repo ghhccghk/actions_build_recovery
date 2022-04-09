@@ -109,7 +109,7 @@ jobs:
         export ALLOW_MISSING_DEPENDENCIES=true
         source build/envsetup.sh
         export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
-        lunch omni_${{ steps.var.outputs.device_code }}-eng 
+        lunch twrp_${{ steps.var.outputs.device_code }}-eng
         mka recoveryimage -j$(nproc --all)
         
     - name: Upload REC
