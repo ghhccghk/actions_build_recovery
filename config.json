@@ -7,7 +7,7 @@
   "dt_url": "color597/twrp_device_oppo_PBCM10",
   "dt_branch": "android-11",
   "dt_remote": "github",
-  "dt_path": "device/oppo/pbcm10",
+  "dt_path": "device/oppo/PBCM10",
   "device_code": "PBCM10",
   "fix_product": false,
   "fix_misscom": false,
