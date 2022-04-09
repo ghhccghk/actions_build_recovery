@@ -66,7 +66,7 @@ jobs:
         echo "::set-output name=pwd::$(pwd)"
         git config --global user.name "${{ steps.var.outputs.git_username }}"
         git config --global user.email "${{ steps.var.outputs.git_email }}"
-        rsync ${{ steps.var.outputs.twrp_url }}${{ steps.var.outputs.twrp_branch }} . --progress -a
+        rsync ${{ steps.var.outputs.twrp_url }}/${{ steps.var.outputs.twrp_branch }} . --progress -a
       id: pwd
       
     - name: Fix the bug of missing common
