@@ -1,6 +1,6 @@
 {
   "twrp_url": "https://gitlab.com/OrangeFox/Manifest.git",
-  "twrp_branch": "fox_9.0",
+  "twrp_branch": "fox_10.0",
   "git_username": "ghhccghk",
   "git_email": "wjd491281@gmail.com",
   "use_own_dt": true,
@@ -8,7 +8,7 @@
   "dt_branch": "android-11",
   "dt_remote": "github",
   "dt_path": "device/oppo/pbcm10",
-  "device_code": "pbcm10",
+  "device_code": "PBCM10",
   "fix_product": false,
   "fix_misscom": false,
   "fix_busybox": false,
