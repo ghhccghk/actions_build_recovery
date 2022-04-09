@@ -79,7 +79,7 @@ jobs:
         git config --global user.email "${{ steps.var.outputs.git_email }}"
         repo init --depth=1 -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0
         repo sync -j$(nproc --all)  --force-sync
-        git clone ${{ github.event.inputs.dt_remote }}${{ github.event.inputs.dt_url }}.git -b ${{ github.event.inputs.dt_path }}
+        git clone ${{ github.event.inputs.dt_remote }}${{ github.event.inputs.dt_url }}.git ${{ github.event.inputs.dt_path }}
 
 
     - name: Start Building
