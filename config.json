@@ -9,8 +9,8 @@
   "dt_remote": "github",
   "dt_path": "device/oppo/pbcm10",
   "device_code": "pbcm10",
-  "fix_product": true,
-  "fix_misscom": true,
+  "fix_product": false,
+  "fix_misscom": false,
   "fix_busybox": false,
   "fix_branch": "fox_9.0"
 }
