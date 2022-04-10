@@ -61,7 +61,7 @@ jobs:
     - name: Initialize a Repo client
       run: |
         PATH=~/bin:$PATH
-        mkdir workspace
+        mkdir ~/workspace
         cd ~/workspace
         echo "::set-output name=pwd::$(pwd)"
         git config --global user.name "${{ steps.var.outputs.git_username }}"
