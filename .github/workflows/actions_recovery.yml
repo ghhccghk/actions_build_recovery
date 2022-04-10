@@ -77,7 +77,7 @@ jobs:
         echo "::set-output name=pwd::$(pwd)"
         git config --global user.name "${{ steps.var.outputs.git_username }}"
         git config --global user.email "${{ steps.var.outputs.git_email }}"
-        repo init --depth=1 -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0
+        repo init -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0
         repo sync -j$(nproc --all)  --force-sync
         git clone https://${{ steps.var.outputs.dt_remote }}/${{ steps.var.outputs.dt_url }}.git ${{ steps.var.outputs.dt_path }}
 
