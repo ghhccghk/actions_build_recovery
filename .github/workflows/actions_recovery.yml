@@ -69,7 +69,7 @@ jobs:
         repo init --depth=1  -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0
         repo sync -j$(nproc --all)  --force-sync
         git clone https://${{ steps.var.outputs.dt_remote }}/${{ steps.var.outputs.dt_url }}.git ${{ steps.var.outputs.dt_path }}
-
+        git clone https://gitlab.com/OrangeFox/misc/theme.git bootable/recovery/gui
 
     - name: Start Building
       run: |
