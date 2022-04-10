@@ -37,18 +37,7 @@ jobs:
         mkdir ~/bin
         curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
         chmod a+x ~/bin/repo
-
-
-    - name: Install required packages
-      run: |
-        cd ~
-        sudo apt -y install git aria2
-        mkdir workspace
-        cd workspace
-        git clone https://gitlab.com/OrangeFox/misc/scripts
-        cd scripts
-        sudo bash setup/android_build_env.sh
-        sudo bash setup/install_android_sdk.sh || true
+        sudo apt-get autoclean
 
     - name: Get variables
       run: |
@@ -78,7 +67,6 @@ jobs:
         git config --global user.name "${{ steps.var.outputs.git_username }}"
         git config --global user.email "${{ steps.var.outputs.git_email }}"
         repo init  -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0
-        sudo apt-get autoclean
         repo sync -j$(nproc --all)  --force-sync
         git clone https://${{ steps.var.outputs.dt_remote }}/${{ steps.var.outputs.dt_url }}.git ${{ steps.var.outputs.dt_path }}
 
