@@ -77,7 +77,7 @@ jobs:
         mkdir /home/runner/workspace/out/target/product/PBCM10
         mkdir /home/runner/workspace/out/target/product/PBCM10/system
         mkdir /home/runner/workspace/out/target/product/PBCM10/system/etc/
-        cp /home/runner/workspace/device/oppo/PBCM10/root/system/etc/ld.config.txt /home/runner/workspace/out/target/product/PBCM10/system/etc/ld.config.txt
+        cp /home/runner/workspace/device/oppo/PBCM10/recovery/root/system/etc/ld.config.txt /home/runner/workspace/out/target/product/PBCM10/system/etc/ld.config.txt
 
     - name: Start Building
       run: |
