@@ -69,7 +69,13 @@ jobs:
         repo init  -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0
         repo sync -j$(nproc --all)  --force-sync
         git clone https://${{ steps.var.outputs.dt_remote }}/${{ steps.var.outputs.dt_url }}.git ${{ steps.var.outputs.dt_path }}
-
+        mkdir /home/runner/workspace/out
+        mkdir /home/runner/workspace/out/target
+        mkdir /home/runner/workspace/out/target/product
+        mkdir /home/runner/workspace/out/target/product/PBCM10
+        mkdir /home/runner/workspace/out/target/product/PBCM10/system
+        mkdir /home/runner/workspace/out/target/product/PBCM10/system/etc/
+        cp /home/runner/workspace/device/oppo/PBCM10/root/system/etc/ld.config.txt /home/runner/workspace/out/target/product/PBCM10/system/etc/ld.config.txt
 
     - name: Start Building
       run: |
