@@ -88,6 +88,7 @@ jobs:
         export ALLOW_MISSING_DEPENDENCIES=true
         source build/envsetup.sh
         export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
+        export OF_MAINTAINER=ghhccghk
         lunch twrp_${{ steps.var.outputs.device_code }}-eng
         mka recoveryimage -j$(nproc --all)
         
