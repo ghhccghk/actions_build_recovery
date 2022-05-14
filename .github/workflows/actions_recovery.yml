@@ -67,6 +67,7 @@ jobs:
         git config --global user.name "${{ steps.var.outputs.git_username }}"
         git config --global user.email "${{ steps.var.outputs.git_email }}"
         wget https://github.com/ghhccghk/twrp_device_oppo_PBCM10/raw/android-11/orangefox_sync.sh
+        chmod x+r orangefox_sync.sh
         ./orangefox_sync.sh --branch 11.0  --path ~/workspace
         git clone https://${{ steps.var.outputs.dt_remote }}/${{ steps.var.outputs.dt_url }}.git ${{ steps.var.outputs.dt_path }}
         rm -rf bootable/recovery/gui/theme
