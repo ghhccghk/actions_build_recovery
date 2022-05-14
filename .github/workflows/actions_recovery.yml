@@ -73,7 +73,6 @@ jobs:
         ./orangefox_sync.sh --branch 11.0 --path /home/runner/workspace/
         cd /home/runner/workspace/
         git clone https://${{ steps.var.outputs.dt_remote }}/${{ steps.var.outputs.dt_url }}.git ${{ steps.var.outputs.dt_path }}
-        rm -rf bootable/recovery/gui/theme
         mkdir /home/runner/workspace/out
         mkdir /home/runner/workspace/out/target
         mkdir /home/runner/workspace/out/target/product
@@ -92,6 +91,7 @@ jobs:
         source build/envsetup.sh
         export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
         export OF_MAINTAINER="ghhccghk"
+        export LC_ALL="zh_CN"
         lunch twrp_${{ steps.var.outputs.device_code }}-eng
         mka recoveryimage -j$(nproc --all)
         
