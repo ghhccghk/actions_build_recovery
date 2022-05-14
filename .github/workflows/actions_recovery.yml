@@ -74,7 +74,6 @@ jobs:
         cd /home/runner/workspace/
         git clone https://${{ steps.var.outputs.dt_remote }}/${{ steps.var.outputs.dt_url }}.git ${{ steps.var.outputs.dt_path }}
         rm -rf bootable/recovery/gui/theme
-        git clone https://github.com/ghhccghk/recovery-theme.git bootable/recovery/gui/theme
         mkdir /home/runner/workspace/out
         mkdir /home/runner/workspace/out/target
         mkdir /home/runner/workspace/out/target/product
@@ -82,7 +81,7 @@ jobs:
         mkdir /home/runner/workspace/out/target/product/PBCM10/system
         mkdir /home/runner/workspace/out/target/product/PBCM10/system/etc/
         cp /home/runner/workspace/device/oppo/PBCM10/recovery/root/system/etc/ld.config.txt /home/runner/workspace/out/target/product/PBCM10/system/etc/ld.config.txt
-
+        rm -rf /home/runner/workspace/device/xiaomi
     - name: Start Building
       run: |
         PATH=~/bin:$PATH
